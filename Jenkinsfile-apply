@@ -17,17 +17,14 @@ pipeline {
       }
     }
     stage ('Apply resources') {
-      steps {
 	when {
 		branch 'main'
 	}
-
 	steps {
 		sh 'oc apply -k config'
 		sh './wait_oauth.sh'
 	}
 
-      }
     }
     stage ('Verify test user') {
       steps {
